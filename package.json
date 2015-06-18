@@ -1,0 +1,25 @@
+{
+  "name": "webcdn-coordinator",
+  "version": "0.0.1",
+  "description": "A simple websockets server for WebRTC-signaling of the webcdn system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmichelberger/webcdn-coordinator.git"
+  },
+  "keywords": [
+    "WebRTC",
+    "websockets",
+    "CDN",
+    "WebCDN"
+  ],
+  "author": "patrick_michelberger <pmichelberger@googlemail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pmichelberger/webcdn-coordinator/issues"
+  },
+  "homepage": "https://github.com/pmichelberger/webcdn-coordinator"
+}
