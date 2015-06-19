@@ -1,0 +1,7 @@
+idea
+!.gitignore
+/node_modules
+.DS_Store
+/nbproject
+npm-debug.log
+.idea
