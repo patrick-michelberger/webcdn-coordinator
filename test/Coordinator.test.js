@@ -1,14 +1,13 @@
 'use strict';
 
-var WebSocketClient = require('websocket').client;
-var chai = require('chai');
-var expect = chai.expect;
+var expect = require('chai').expect;
+var coordinator = require('../lib/coordinator.js');
+var Server = require('../lib/server.js');
 
 describe('Coordinator', function() {
-    it('it should a new user to all users', function(done) {
-        var client1 = new WebSocketClient();
-        client1.on('connect', function(connection) {
-
-        });
+    it('it should create a coordinator server instance', function(done) {
+    	var server = coordinator();
+    	expect(server).to.be.an.instanceof(Server);
+    	done();
     });
 });
