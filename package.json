@@ -4,7 +4,7 @@
   "description": "A simple websockets server for WebRTC-signaling of the webcdn system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/mocha/bin/mocha --recursive --timeout=5000 --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
   "homepage": "https://github.com/pmichelberger/webcdn-coordinator",
   "dependencies": {
     "websocket": "^1.0.19"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
   }
 }
