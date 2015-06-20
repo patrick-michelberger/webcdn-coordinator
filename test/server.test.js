@@ -22,6 +22,7 @@ var settings = {
 
 var sdpStringOffer = "v=0\\r\\n" + "o=- 5588049418976110637 2 IN IP4 127.0.0.1\\r\\n" + "s=-\\r\\n" + "t=0 0\\r\\n" + "a=msid-semantic: WMS\\r\\n" + "m=application 9 DTLS/SCTP 5000\\r\\n" + "c=IN IP4 0.0.0.0\\r\\n" + "a=ice-ufrag:MoO1h+9coSHA4GKu\\r\\n" + "a=ice-pwd:alaZDAtUh9wucNk+kJLx8pQp\\r\\n" + "a=fingerprint:sha-256 15:BB:EB:C9:CF:F6:D0:C9:20:3B:A7:E0:2A:A3:42:F5:29:A3:8B:56:E8:5A:04:16:BE:47:C4:CC:1D:FA:A7:7D\\r\\n" + "a=setup:actpass\\r\\n" + "a=mid:data\\r\\n" + "a=sctpmap:5000 webrtc-datachannel 1024\\r\\n";
 var relayMessage = '{ "type": "relay", "to": "2", "data": { "type" : "offer", "sdp" : "' + sdpStringOffer + '"}}';
+var updateMessage = '{ "type" : "update", "data" : ["123456","125355"] }';
 
 describe('Server', function() {
 
@@ -59,10 +60,24 @@ describe('Server', function() {
 
             client2.onmessage = function(e) {
                 if (typeof e.data === 'string') {
-                	var msg = JSON.parse(e.data);
-                	expect(msg.type).to.equal('offer');
-                	done();
+                    var msg = JSON.parse(e.data);
+                    expect(msg.type).to.equal('offer');
+                    done();
                 }
+            };
+        });
+    });
+
+    describe('.handleUpdate', function() {
+        it("it should save the list of content-hashes for the sending peer", function(done) {
+            var client = new W3CWebSocket('ws://localhost:1337?id=1');
+            client.onopen = function() {
+                client.send(updateMessage);
+                setTimeout(function() {
+                expect(server.dict_item_connections["123456"]).not.to.be.empty;
+                done();
+                }, 10);
+
             };
         });
     });
