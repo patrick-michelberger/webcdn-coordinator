@@ -14,7 +14,6 @@ var lookupMessage = '{"type":"lookup","data":"123456"}';
 
 describe('Server', function() {
 
-    var server = new Server();
     var server = Coordinator();
 
     beforeEach(function() {
@@ -80,7 +79,7 @@ describe('Server', function() {
                 client1.send(updateMessage);
                 setTimeout(function() {
                     client2.send(lookupMessage);
-                }, 10);
+                }, 100);
             };
 
             client2.onmessage = function(e) {
@@ -89,6 +88,23 @@ describe('Server', function() {
                     expect(msg.type).to.equal('lookup-response');
                     done();
                 }
+            };
+        });
+    });
+
+    describe('.removePeer', function() {
+        it("should delete the peer on a close event and its corresponding stored items", function(done) {
+            var client = new W3CWebSocket('ws://localhost:1337?id=1');
+            client.onopen = function() {
+                client.send(updateMessage);
+                setTimeout(function() {
+                    client.close();
+                    setTimeout(function() {
+                        expect(server.dict_pid_connections['1']).to.be.empty;
+                        expect(Object.keys(server.dict_item_connections).length).to.be.equal(0);
+                        done();
+                    }, 100);
+                }, 100);
             };
         });
     });
