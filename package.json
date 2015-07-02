@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/pmichelberger/webcdn-coordinator",
   "dependencies": {
+    "geoip-lite": "^1.1.6",
     "websocket": "^1.0.19"
   },
   "devDependencies": {
