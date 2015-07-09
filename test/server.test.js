@@ -11,6 +11,7 @@ var sdpStringOffer = "v=0\\r\\n" + "o=- 5588049418976110637 2 IN IP4 127.0.0.1\\
 var relayMessage = '{"type":"relay","to":"2","data":{"type":"offer","sdp":"' + sdpStringOffer + '"}}';
 var updateMessage = '{"type":"update","data":["123456","125355"]}';
 var lookupMessage = '{"type":"lookup","data":"123456"}';
+var uploadRatioMessage = '{"type":"upload_ratio","data":{"from":"8538934b-df4d-4978-9e05-6e407729ec26","to":"57036898-fb4c-43d3-90aa-eaa91d66b088","hash":"db55def70d097084319386de7d3ac32188b6cf62","size":75510}}';
 
 describe('Server', function() {
 
@@ -50,7 +51,7 @@ describe('Server', function() {
             client2.onmessage = function(e) {
                 if (typeof e.data === 'string') {
                     var msg = JSON.parse(e.data);
-                    expect(msg.type).to.equal('offer');
+                    expect(msg.data.type).to.equal('offer');
                     done();
                 }
             };
@@ -105,6 +106,22 @@ describe('Server', function() {
                         done();
                     }, 100);
                 }, 100);
+            };
+        });
+    });
+
+    describe('.handleUploadRatio', function() {
+        it("should update the clients upload statistics", function(done) {
+            var client = new W3CWebSocket('ws://localhost:1337?id=1');
+            client.onopen = function() {
+                client.send(uploadRatioMessage);
+                setTimeout(function() {
+                    expect(server.dict_pid_stats["8538934b-df4d-4978-9e05-6e407729ec26"].upload).to.be.equal(75510);
+                    expect(server.dict_pid_stats["8538934b-df4d-4978-9e05-6e407729ec26"].download).to.be.equal(0);
+                    expect(server.dict_pid_stats["57036898-fb4c-43d3-90aa-eaa91d66b088"].download).to.be.equal(75510);
+                    expect(server.dict_pid_stats["57036898-fb4c-43d3-90aa-eaa91d66b088"].upload).to.be.equal(0);
+                    done();
+                }, 10);
             };
         });
     });
