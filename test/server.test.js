@@ -147,4 +147,31 @@ describe('Server', function() {
         });
     });
 
+    describe('.isUploadAllowed', function() {
+        it("it should allow the upload", function() {
+            server.dict_pid_stats["8538934b-df4d-4978-9e05-6e407729ec26"] = {
+                "upload": 10,
+                "download": 20
+            };
+            var result = server.isUploadAllowed("8538934b-df4d-4978-9e05-6e407729ec26");
+            expect(result).to.be.true;
+        });
+        it("it should reject the upload", function() {
+            server.dict_pid_stats["8538934b-df4d-4978-9e05-6e407729ec26"] = {
+                "upload": 20,
+                "download": 10
+            };
+            var result = server.isUploadAllowed("8538934b-df4d-4978-9e05-6e407729ec26");
+            expect(result).to.be.false;
+        });
+        it("it should allow the upload due to UPLOAD_MAX", function() {
+            server.dict_pid_stats["8538934b-df4d-4978-9e05-6e407729ec26"] = {
+                "upload": 20,
+                "download": 30
+            };
+            var result = server.isUploadAllowed("8538934b-df4d-4978-9e05-6e407729ec26");
+            expect(result).to.be.false;
+        });
+    });
+
 });
