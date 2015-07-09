@@ -21,7 +21,11 @@ describe('Server', function() {
         server.messenger.clear();
     });
 
-    afterEach(function() {});
+    afterEach(function() {
+        server.dict_pid_stats = {};
+        server.dict_item_connections = {};
+        server.dict_pid_connections = {};
+    });
 
     it('it should create a server instance', function(done) {
         expect(server).to.be.an.instanceof(Server);
@@ -108,11 +112,28 @@ describe('Server', function() {
                 }, 100);
             };
         });
+
+        it("should delete the corresponding statistics after removing a specific peer", function(done) {
+            var client = new W3CWebSocket('ws://localhost:1337?id=57036898-fb4c-43d3-90aa-eaa91d66b088');
+            client.onopen = function() {
+                client.send(updateMessage);
+                client.send(uploadRatioMessage);
+                setTimeout(function() {
+                    client.close();
+                    setTimeout(function() {
+                        expect(server.dict_pid_connections['57036898-fb4c-43d3-90aa-eaa91d66b088']).to.be.empty;
+                        expect(server.dict_pid_stats['57036898-fb4c-43d3-90aa-eaa91d66b088']).to.be.empty;
+                        expect(Object.keys(server.dict_item_connections).length).to.be.equal(0);
+                        done();
+                    }, 100);
+                }, 100);
+            };
+        });
     });
 
     describe('.handleUploadRatio', function() {
         it("should update the clients upload statistics", function(done) {
-            var client = new W3CWebSocket('ws://localhost:1337?id=1');
+            var client = new W3CWebSocket('ws://localhost:1337?id=57036898-fb4c-43d3-90aa-eaa91d66b088');
             client.onopen = function() {
                 client.send(uploadRatioMessage);
                 setTimeout(function() {
