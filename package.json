@@ -24,6 +24,7 @@
   "homepage": "https://github.com/pmichelberger/webcdn-coordinator",
   "dependencies": {
     "geoip-lite": "^1.1.6",
+    "nearest-neighbor": "0.0.3",
     "websocket": "^1.0.19"
   },
   "devDependencies": {
