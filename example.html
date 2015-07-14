@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdn.rawgit.com/pmichelberger/webcdn-client/master/dist/webcdn.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="webcdn-alert" class="alert" style="display:none;"></div>
+    <div class="container">
+        <h3>Examples</h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <img data-webcdn-fallback="https://secure-i4.ztat.net/camp/74/d0/79136ee345a441d930a0d8ea71b5.jpg" class="img-responsive" />
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <img data-webcdn-fallback="https://secure-i1.ztat.net/camp/68/ae/b05db993d41d33bb22401f68a0c0.jpg" class="img-responsive" />
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <img data-webcdn-fallback="http://cdn.edited.de/file/05bf3dfc9f9f99d64f2c6040d29f3dc6?width=350&height=443" class="img-responsive" />
+            </div>
+        </div>
+        <div id="test" class="row">
+            <br/> This product includes GeoLite2 data created by MaxMind, available from
+            <a href="http://www.maxmind.com">http://www.maxmind.com</a>.
+        </div>
+        <script>
+        <!-- Example code goes here -->
+        // DOM elements
+        var alert = document.getElementById("webcdn-alert");
+
+        var webcdn = new WebCDN({
+            "bucketUrl": "https://s3.eu-central-1.amazonaws.com/webcdn2/",
+            "trackGeolocation": true
+        });
+
+        // Event listeners
+        webcdn.on("geolocation:start", function()  {
+            alert.classList.add("alert-danger");
+            alert.innerHTML = "Requesting current geolocation ...";
+            alert.style.display = "block";
+        });
+
+        webcdn.on("geolocation:end", function()  {
+            alert.innerHTML = "Current geolocation received !";
+            alert.classList.remove("alert-danger");
+            alert.classList.add("alert-success");
+            setTimeout(function() {
+                alert.classList.remove("alert-success");
+                alert.style.display = "none";
+            }, 1500);
+        });
+
+        webcdn.init('ws://webcdn.michelberger.info:1337', function() {
+            console.log("WebCDN READY");
+        });
+        </script>
+</body>
+
+</html>
