@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.blue-pink.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+    .material-icons {
+        color: #424242!important;
+    }
+    
+    .webcdn-ribbon {
+        width: 100%;
+        height: 40vh;
+        background-color: #3F51B5;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+    }
+    
+    .webcdn-main {
+        margin-top: -35vh;
+        -webkit-flex-shrink: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+    }
+    
+    .webcdn-content {
+        border-radius: 2px;
+        padding: 80px 56px;
+        margin-bottom: 80px;
+    }
+    
+    #view-source {
+        position: fixed;
+        display: block;
+        right: 0;
+        bottom: 0;
+        margin-right: 40px;
+        margin-bottom: 40px;
+        z-index: 900;
+    }
+    /* Code styles */
+    
+    .webcdn-code_snippet {
+        font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        font-size: 12px;
+        color: rgb(112, 128, 144);
+        padding-bottom: 16px;
+        padding-left: 40px;
+        padding-right: 50px;
+        padding-top: 16px;
+        background: #FAFAFA;
+    }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Add your site or application content here -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-800">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title"><b>Web</b>CDN</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only"></nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title"><b>Web</b>CDN</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="http://www11.in.tum.de/forschung/projekte/webcdn" target="_blank">Research Description</a>
+                <a class="mdl-navigation__link" href="https://github.com/pmichelberger/webcdn-client" target="_blank">Github</a>
+            </nav>
+        </div>
+        <div class="webcdn-ribbon"></div>
+        <main class="webcdn-main mdl-layout__content">
+            <div class="webcdn-container mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+                <div class="webcdn-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+                    <div class="webcdn-crumbs mdl-color-text--grey-500">
+                        A Content Distribution Network from web browsers using WebRTC
+                    </div>
+                    <h3>How to <b>Web</b>CDN</h3>
+                    <h5>Installation</h5>
+                    <p>
+                        <div class="webcdn-code_snippet">bower install webcdn-client</div>
+                    </p>
+                    <h5>Quickstart</h5>
+                    <p>
+                        <div class="webcdn-code_snippet">
+                            var webcdn = new WebCDN({
+                            <br/> &nbsp;&nbsp;&nbsp;&nbsp;"bucketUrl": "https://s3.eu-central-1.amazonaws.com/webcdn2/",
+                            <br/> &nbsp;&nbsp;&nbsp;&nbsp;"trackGeolocation": true
+                            <br/> });
+                        </div>
+                    </p>
+                    <h5>About the project</h5>
+                    <p>
+                        The aim of this project is to evaluate potential resource savings, performance improvements and security concerns of a content distribution network (CDN) from client web browsers. The implementation leverages the WebRTC framework to cache and distribute content between peers without relaying the data through an intermediate web server. The evaluation exploits a cloud computing infrastructure to access websites from automated browser instances located across multiple locations across the globe. Furthermore, a proxy server is used to inject the system’s client component and simulate peer-to-peer content delivery with real websites.
+                    </p>
+                    <p>
+                        <img src="http://www11.in.tum.de/userfiles/webcdn_emulation-deployment.jpg" />
+                    </p>
+                    <p>
+                        <a href="http://www11.in.tum.de/forschung/projekte/webcdn" target="_blank">Complete research project description</a>
+                    </p>
+                </div>
+            </div>
+            <footer class="webcdn-footer mdl-mini-footer">
+                <div class="mdl-mini-footer--left-section">
+                    <ul class="mdl-mini-footer--link-list">
+                        Patrick Michelberger, Biedersteiner Strasse 30, 80805 München
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <a href="https://github.com/pmichelberger/webcdn-client" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" data-upgraded=",MaterialButton,MaterialRipple">View Source<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
+</body>
+
+</html>
