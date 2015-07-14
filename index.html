@@ -11,6 +11,11 @@
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
+    a {
+        color: #333;
+        font-size: 12px;
+    }
+    
     .material-icons {
         color: #424242!important;
     }
@@ -48,10 +53,14 @@
     }
     /* Code styles */
     
+    .webcdn-code_snippet_comment {
+        color: rgb(112, 128, 144);
+    }
+    
     .webcdn-code_snippet {
         font-family: Consolas, Monaco, 'Andale Mono', monospace;
         font-size: 12px;
-        color: rgb(112, 128, 144);
+        color: #333;
         padding-bottom: 16px;
         padding-left: 40px;
         padding-right: 50px;
@@ -95,14 +104,32 @@
                     <h3>How to <b>Web</b>CDN</h3>
                     <h5>Installation</h5>
                     <p>
-                        <div class="webcdn-code_snippet">bower install webcdn-client</div>
+                        <div class="webcdn-code_snippet">bower install webcdn</div>
+                    </p>
+                    <p>or</p>
+                    <p>
+                        <div class="webcdn-code_snippet">npm install webcdn-client</div>
                     </p>
                     <h5>Quickstart</h5>
                     <p>
+                        Required HTML modifications
                         <div class="webcdn-code_snippet">
+                        <div class="webcdn-code_snippet_comment">// Replace all 'src' attributes with 'data-webcdn-fallback'</div>
+                        &lt;img <b>data-webcdn-fallback</b>&#61;"[IMAGE-URL]"/&gt;
+                        </div>
+                    </p>
+                    <p>
+                        Insert the following code in your application logic
+                        <div class="webcdn-code_snippet">
+                            <div class="webcdn-code_snippet_comment">// Configuration</div>
                             var webcdn = new WebCDN({
                             <br/> &nbsp;&nbsp;&nbsp;&nbsp;"bucketUrl": "https://s3.eu-central-1.amazonaws.com/webcdn2/",
                             <br/> &nbsp;&nbsp;&nbsp;&nbsp;"trackGeolocation": true
+                            <br/> });
+                            <br/>
+                            <div class="webcdn-code_snippet_comment">// Initialization</div>
+                            webcdn.init('ws://webcdn.michelberger.info:1337', function() {
+                            <br/> &nbsp;&nbsp;&nbsp;&nbsp;console.log("WebCDN is working!");
                             <br/> });
                         </div>
                     </p>
@@ -111,7 +138,7 @@
                         The aim of this project is to evaluate potential resource savings, performance improvements and security concerns of a content distribution network (CDN) from client web browsers. The implementation leverages the WebRTC framework to cache and distribute content between peers without relaying the data through an intermediate web server. The evaluation exploits a cloud computing infrastructure to access websites from automated browser instances located across multiple locations across the globe. Furthermore, a proxy server is used to inject the system’s client component and simulate peer-to-peer content delivery with real websites.
                     </p>
                     <p>
-                        <img src="http://www11.in.tum.de/userfiles/webcdn_emulation-deployment.jpg" />
+                        <img width="400" src="http://www11.in.tum.de/userfiles/webcdn_emulation-deployment.jpg" style="  margin-left: 50%;left: -200px;position: relative;margin-bottom: 20px;margin-top:20px;" />
                     </p>
                     <p>
                         <a href="http://www11.in.tum.de/forschung/projekte/webcdn" target="_blank">Complete research project description</a>
