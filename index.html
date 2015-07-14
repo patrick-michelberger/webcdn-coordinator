@@ -16,6 +16,21 @@
         font-size: 12px;
     }
     
+    h1 {
+        font-size: 34px;
+        font-weight: bolder;
+    }
+    
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    h3 {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
     .material-icons {
         color: #424242!important;
     }
@@ -101,39 +116,9 @@
                     <div class="webcdn-crumbs mdl-color-text--grey-500">
                         A Content Distribution Network from web browsers using WebRTC
                     </div>
-                    <h3>How to <b>Web</b>CDN</h3>
-                    <h5>Installation</h5>
-                    <p>
-                        <div class="webcdn-code_snippet">bower install webcdn</div>
-                    </p>
-                    <p>or</p>
-                    <p>
-                        <div class="webcdn-code_snippet">npm install webcdn-client</div>
-                    </p>
-                    <h5>Quickstart</h5>
-                    <p>
-                        Required HTML modifications
-                        <div class="webcdn-code_snippet">
-                        <div class="webcdn-code_snippet_comment">// Replace all 'src' attributes with 'data-webcdn-fallback'</div>
-                        &lt;img <b>data-webcdn-fallback</b>&#61;"[IMAGE-URL]"/&gt;
-                        </div>
-                    </p>
-                    <p>
-                        Insert the following code in your application logic
-                        <div class="webcdn-code_snippet">
-                            <div class="webcdn-code_snippet_comment">// Configuration</div>
-                            var webcdn = new WebCDN({
-                            <br/> &nbsp;&nbsp;&nbsp;&nbsp;"bucketUrl": "https://s3.eu-central-1.amazonaws.com/webcdn2/",
-                            <br/> &nbsp;&nbsp;&nbsp;&nbsp;"trackGeolocation": true
-                            <br/> });
-                            <br/>
-                            <div class="webcdn-code_snippet_comment">// Initialization</div>
-                            webcdn.init('ws://webcdn.michelberger.info:1337', function() {
-                            <br/> &nbsp;&nbsp;&nbsp;&nbsp;console.log("WebCDN is working!");
-                            <br/> });
-                        </div>
-                    </p>
-                    <h5>About the project</h5>
+                    <!-- Github documentation -->
+                    <p id="webcdn-doc"></p>
+                    <h2>About the project</h2>
                     <p>
                         The aim of this project is to evaluate potential resource savings, performance improvements and security concerns of a content distribution network (CDN) from client web browsers. The implementation leverages the WebRTC framework to cache and distribute content between peers without relaying the data through an intermediate web server. The evaluation exploits a cloud computing infrastructure to access websites from automated browser instances located across multiple locations across the globe. Furthermore, a proxy server is used to inject the system’s client component and simulate peer-to-peer content delivery with real websites.
                     </p>
@@ -156,5 +141,17 @@
     </div>
     <a href="https://github.com/pmichelberger/webcdn-client" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast" data-upgraded=",MaterialButton,MaterialRipple">View Source<span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
 </body>
+<script src="https://cdn.rawgit.com/showdownjs/showdown/1.2.0/dist/showdown.min.js"></script>
+<script>
+var xhr = new XMLHttpRequest();
+xhr.onload = function(e) {
+    var converter = new showdown.Converter();
+    var text = this.responseText;
+    var html = converter.makeHtml(text);
+    document.getElementById("webcdn-doc").innerHTML = html;
+};
+xhr.open("GET", "https://raw.githubusercontent.com/pmichelberger/webcdn-client/master/README.md", true);
+xhr.send(null);
+</script>
 
 </html>
