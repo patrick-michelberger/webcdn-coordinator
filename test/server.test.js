@@ -9,7 +9,7 @@ var W3CWebSocket = require('websocket').w3cwebsocket;
 
 var sdpStringOffer = "v=0\\r\\n" + "o=- 5588049418976110637 2 IN IP4 127.0.0.1\\r\\n" + "s=-\\r\\n" + "t=0 0\\r\\n" + "a=msid-semantic: WMS\\r\\n" + "m=application 9 DTLS/SCTP 5000\\r\\n" + "c=IN IP4 0.0.0.0\\r\\n" + "a=ice-ufrag:MoO1h+9coSHA4GKu\\r\\n" + "a=ice-pwd:alaZDAtUh9wucNk+kJLx8pQp\\r\\n" + "a=fingerprint:sha-256 15:BB:EB:C9:CF:F6:D0:C9:20:3B:A7:E0:2A:A3:42:F5:29:A3:8B:56:E8:5A:04:16:BE:47:C4:CC:1D:FA:A7:7D\\r\\n" + "a=setup:actpass\\r\\n" + "a=mid:data\\r\\n" + "a=sctpmap:5000 webrtc-datachannel 1024\\r\\n";
 var relayMessage = '{"type":"relay","to":"2","data":{"type":"offer","sdp":"' + sdpStringOffer + '"}}';
-var updateMessage = '{"type":"update","data":["123456","125355"]}';
+var updateMessage = '{"type":"update","data":[{"hash": "123456"},{"hash":"125355"}]}';
 var lookupMessage = '{"type":"lookup","data":"123456"}';
 var uploadRatioMessage = '{"type":"upload_ratio","data":{"from":"8538934b-df4d-4978-9e05-6e407729ec26","to":"57036898-fb4c-43d3-90aa-eaa91d66b088","hash":"db55def70d097084319386de7d3ac32188b6cf62","size":75510}}';
 
