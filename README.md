@@ -20,6 +20,12 @@ $ npm start [-- <args>]
 | `uploadMax`    | Number        | 10 (MB)     |
 | `socketPort`   | Number        | 1337        |
 
+Example
+
+```bash
+$ npm start -- --uploadMax 20 --socketPort 1200
+```
+
 ## API
 
 ### Server
