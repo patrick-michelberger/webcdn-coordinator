@@ -11,8 +11,14 @@ npm install webcdn-coordinator
 ```bash
 $ npm install webcdn-coordinator
 $ cd webcdn-coordinator 
-$ npm start
+$ npm start [-- <args>]
 ```
+
+| Options        | Type          | Default     |
+| -------------- |:-------------:| -----------:|
+| `uploadRatio`  | Number        | 1           |
+| `uploadMax`    | Number        | 10 (MB)     |
+| `socketPort`   | Number        | 1337        |
 
 ## API
 
